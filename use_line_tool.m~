@@ -1,0 +1,15 @@
+%% Clean up
+clear all
+close all
+
+%% Take in the first image and select a point on that image
+input_dir = ['/Users/minhtrangvy/Documents/MATLAB/Computational_Photography/3D_Reconstruction/horse/set1/'];
+input_file_ext = 'JPG';
+files = dir([input_dir '*.' input_file_ext]);
+file = files(1).name;
+current_image = imread([input_dir file]);
+imshow(current_image)
+[set1_x, set1_y] = ginput(1);
+
+
+epipolar_line_tool(1,[set1_x,set1_y], P_set1_back_left);
