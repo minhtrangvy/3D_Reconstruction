@@ -6,10 +6,30 @@ close all
 input_dir = ['/Users/minhtrangvy/Documents/MATLAB/Computational_Photography/3D_Reconstruction/horse/set1/'];
 input_file_ext = 'JPG';
 files = dir([input_dir '*.' input_file_ext]);
-file = files(1).name;
-current_image = imread([input_dir file]);
-imshow(current_image)
-[set1_x, set1_y] = ginput(1);
+% % file = files(1).name;
+set1_back_left_image = imread([input_dir files(1).name]);
+set1_back_right_image = imread([input_dir files(2).name]);
+set1_front_left_image = imread([input_dir files(3).name]);
+set1_left_image = imread([input_dir files(4).name]);
+set1_right_image = imread([input_dir files(5).name]);
 
+% imshow(set1_back_left_image)
+% [set1_epipolar_x, set1_epipolar_y] = ginput(1);
+% save('set1_epipolar_point')
+load('set1_epipolar_point')
 
-epipolar_line_tool(1,[set1_x,set1_y], P_set1_back_left);
+%% Find epipolar lines in the remaining images in the set based on that points
+load('all_camera_matrices')
+set1_back_right_line = epipolar_line_tool([set1_epipolar_x,set1_epipolar_y], P_set1_back_left, P_set1_back_right);
+break
+set1_front_left_line = epipolar_line_tool([set1_epipolar_x,set1_epipolar_y], P_set1_back_left, P_set1_front_left);
+set1_left_line = epipolar_line_tool([set1_epipolar_x,set1_epipolar_y], P_set1_back_left, P_set1_left);
+set1_right_line = epipolar_line_tool([set1_epipolar_x,set1_epipolar_y], P_set1_back_left, P_set1_right);
+
+%% Plot base image
+figure
+subplot(2,3)
+imshow(set1_back_left_image)
+plot(set1_epipolar_x, set1_epipolar_y, '.', 'MarkerSize', 10);
+
+%% Plot images with lines
