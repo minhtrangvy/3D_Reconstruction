@@ -1,0 +1,37 @@
+input_dir = ['/Users/minhtrangvy/Documents/MATLAB/Computational_Photography/3D_Reconstruction/horse/set2/'];
+input_file_ext = 'JPG';
+files = dir([input_dir '*.' input_file_ext]);
+% % set1_back_left_image = imread([input_dir files(1).name]);
+% set1_back_right_image = imread([input_dir files(2).name]);
+% % set1_front_left_image = imread([input_dir files(3).name]);
+% % set1_left_image = imread([input_dir files(4).name]);
+% set1_right_image = imread([input_dir files(5).name]);
+
+%set1 pair1 = back left and left
+%set1 pair2 = back right and right
+
+%set2 pair1 = front right, right
+image1 = imread([input_dir files(2).name]);
+image2 = imread([input_dir files(5).name]);
+%set2 pair2 = back, front_right (it's actually back right)
+image3 = imread([input_dir files(1).name]);
+image4 = imread([input_dir files(2).name]);
+
+load('set1_pair2')
+figure
+imshow(image1)
+hold on;
+plot(set2_pair1_front_right,
+
+break
+load('set2_pair1')
+figure
+imshow(image3)
+set2_pair2_back = [set2_pair1_back; ginput(4)];
+
+figure
+imshow(image4)
+set2_pair2_front_right = [set2_pair2_front_right; ginput(4)];
+
+delete('set2_pair1')
+save('set2_pair1')

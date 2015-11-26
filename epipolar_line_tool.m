@@ -5,7 +5,7 @@ function [epiline] = epipolar_line_tool(point, base_P, image_P )
                  epipole(3) 0 -epipole(1);
                  -epipole(2) epipole(1) 0];
     pinv_P = pinv(base_P);
-    F = cross(epipole_x,image_P*pinv_P);
+    F = epipole_x .* (image_P*pinv_P);
     point(:,3) = 1;
     epiline = F * point';
 end

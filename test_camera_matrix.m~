@@ -3,7 +3,7 @@ current_camera_matrix = P_set2_right;
 input_dir = ['/Users/minhtrangvy/Documents/MATLAB/Computational_Photography/3D_Reconstruction/horse/set2/'];
 input_file_ext = 'JPG';
 files = dir([input_dir '*.' input_file_ext]);
-file = files(5).name;
+file = files(1).name;
 current_image = imread([input_dir file]);
 
 x  = [0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200];
@@ -37,4 +37,4 @@ for point = 1:(length(new_x)-1)
     hold on;
 end
 plot(new_x(121), new_y(121),'.', 'MarkerSize',10);
-title('Set 2, Right')
+title('Set 1, Right')

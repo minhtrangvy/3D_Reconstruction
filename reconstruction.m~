@@ -86,13 +86,20 @@ X3_z = X_set2_pair1(:,3);
 X4_x = X_set2_pair2(:,1);
 X4_y = X_set2_pair2(:,2);
 X4_z = X_set2_pair2(:,3);
-set2_X_x = [X3_x; X4_x];
-set2_X_y = [X3_y; X4_y];
-set2_X_z = [X3_z; X4_z];
+set2_X_x = [X3_x; X2_x];
+set2_X_y = [X1_y; X2_y];
+set2_X_z = [X1_z; X2_z];
 
 figure
-scatter3(set1_X_x,set1_X_y,set1_X_z);
-title('Set 1')
-hold on;
-scatter3(set2_X_x,set2_X_y,set2_X_z);
-title('Set 2')
+scatter3(X1_x,X1_y,X1_z);
+title('Set 1, Pair 1')
+figure
+scatter3(X2_x,X2_y,X2_z);
+title('Set 1, Pair 2')
+
+figure
+scatter3(X3_x,X3_y,X3_z);
+title('Set 2, Pair 1')
+figure
+scatter3(X4_x,X4_y,X4_z);
+title('Set 2, Pair 2')
